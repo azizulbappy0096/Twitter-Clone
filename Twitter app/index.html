@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Twitter Clone </title>
     <link rel="stylesheet" href="Style/index.css" type="text/css">
+    <link rel="stylesheet" href="Style/tweet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -23,12 +25,63 @@
 
     <div class="main">
         <div class="search-bar">
-
+            <input id="user-input" type="text" placeholder="Search Tweets">
+            <img id="search" src="./Icons/search.svg" alt="search icon">
         </div>
 
         <div class="tweets-list">
             <div class="tweets-container">
+                <div class="tweets-user-info">
+                    <div class="tweet-user-profile-image">
 
+                    </div>
+                    <div class="tweet-user-name-container">
+                        <p class="tweet-user-fullName">
+                            Azizul Bappy
+                        </p>
+                        <p class="tweet-user-userName">
+                            @bappy_azizul
+                        </p>
+                    </div>
+                </div>
+                <div class="tweets-contents">
+
+                </div>
+                <div class="tweets-text">
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ex tempora corporis deleniti quidem, temporibus placeat! Ad tempore sunt voluptatum consequuntur, similique fuga vero eveniet? Molestiae aperiam quis officia quisquam?
+                    </p>
+                </div>
+                <div class="tweet-date">
+                    <p>20 Jan,2020</p>
+                </div>
+            </div>
+
+            <div class="tweets-container">
+                <div class="tweets-user-info">
+                    <div class="tweet-user-profile-image">
+
+                    </div>
+                    <div class="tweet-user-name-container">
+                        <p class="tweet-user-fullName">
+                            Azizul Bappy
+                        </p>
+                        <p class="tweet-user-userName">
+                            @bappy_azizul
+                        </p>
+                    </div>
+                </div>
+                <div class="tweets-contents">
+
+                </div>
+                <div class="tweets-text">
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ex tempora corporis deleniti quidem, temporibus placeat! Ad tempore sunt voluptatum consequuntur, similique fuga vero eveniet? Molestiae aperiam quis officia quisquam?
+                    </p>
+                </div>
+                <div class="tweet-date">
+                    <p>20 Jan,2020</p>
+                </div>
             </div>
         </div>
 
@@ -41,10 +94,19 @@
     <div class="twitter-sidebar">
         <div class="sidebar-container">
             <div class="sidebar-contents">
-
+                <h5> Trends for you </h5>
+                <ul>
+                    <li> #Coding </li>
+                    <li> #JavaScript </li>
+                    <li> #Python </li>
+                    <li> #Audi </li>
+                    <li></li>
+                </ul>
             </div>
         </div>
     </div>
+
+    <script src="./Js/script.js"></script>
 </body>
 </html>
 
