@@ -29,7 +29,7 @@ document.getElementById("user-input").addEventListener("keyup", eventHandler);
 displayTwitterData = (response) => {
     let text = '';
     response["statuses"].map(data => {
-        let date = new Date(data.created_at).toDateString()
+        let date = new Date(data.created_at).toISOString();
         const createdDate = moment(date).fromNow();
         text += `
             <div class="tweets-container">
@@ -114,4 +114,10 @@ buildVideo = (metaData) => {
     }
     video += "</div>";
     return videoExists ? video : "";
+}
+
+selectTrend = (e) => {
+    const selectedTrend = e.innerHTML;
+    document.getElementById("user-input").value = selectedTrend;
+    getTwitterData();
 }
