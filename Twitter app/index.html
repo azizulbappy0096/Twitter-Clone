@@ -12,16 +12,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body id="top">
     <div class="navigation-bar">
-        <div class="twitter-icon">
-            <img src="./Icons/Vector.svg" alt="twitter logo">
-        </div>
-        <div class="home-link">
-            <img  src="./Icons/home.svg" alt="home logo">
-        </div>
-        <div class="profile-img">
-            <div class="profile"></div>
+        <div class="navigation-container">
+            <div class="twitter-icon">
+                <img src="./Icons/Vector.svg" alt="twitter logo">
+            </div>
+            <div class="home-link">
+                <img  src="./Icons/home.svg" alt="home logo">
+            </div>
+            <div class="profile-img">
+                <div class="profile"></div>
+            </div>
         </div>
     </div>
 
@@ -32,68 +34,14 @@
         </div>
 
         <div class="tweets-list">
-            <div class="tweets-container">
-                <div class="tweets-user-info">
-                    <div class="tweet-user-profile-image">
-
-                    </div>
-                    <div class="tweet-user-name-container">
-                        <p class="tweet-user-fullName">
-                            Azizul Bappy
-                        </p>
-                        <p class="tweet-user-userName">
-                            @bappy_azizul
-                        </p>
-                    </div>
-                </div>
-                <div class="tweets-contents">
-                    <div class="tweet-image"></div>
-                    <div class="tweet-image"></div>
-                    <div class="tweet-image"></div>
-
-                </div>
-                <div class="tweets-text">
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ex tempora corporis deleniti quidem, temporibus placeat! Ad tempore sunt voluptatum consequuntur, similique fuga vero eveniet? Molestiae aperiam quis officia quisquam?
-                    </p>
-                </div>
-                <div class="tweet-date">
-                    <p>20 Jan,2020</p>
-                </div>
-            </div>
-
-            <div class="tweets-container">
-                <div class="tweets-user-info">
-                    <div class="tweet-user-profile-image">
-
-                    </div>
-                    <div class="tweet-user-name-container">
-                        <p class="tweet-user-fullName">
-                            Azizul Bappy
-                        </p>
-                        <p class="tweet-user-userName">
-                            @bappy_azizul
-                        </p>
-                    </div>
-                </div>
-                <div class="tweets-contents">
-                    <video controls class="tweet-video">
-                        <source src="https://video.twimg.com/ext_tw_video/1308399616220594176/pu/vid/480x270/duKfy9tsRhR4Ektw.mp4?tag=10" type="video/mp4">
-                    </video>
-                </div>
-                <div class="tweets-text">
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ex tempora corporis deleniti quidem, temporibus placeat! Ad tempore sunt voluptatum consequuntur, similique fuga vero eveniet? Molestiae aperiam quis officia quisquam?
-                    </p>
-                </div>
-                <div class="tweet-date">
-                    <p>20 Jan,2020</p>
-                </div>
+            <div class="welcome-message">
+                <h3> Welcome to Twitter-Clone! </h3>
+                <p> Use the search above to see what's happening around the world </p>
             </div>
         </div>
 
-        <div class="next-page">
-
+        <div id="nextPage" class="next-page-container">
+            <img src="./Icons/arrow-down.svg" alt="">
         </div>
 
     </div>

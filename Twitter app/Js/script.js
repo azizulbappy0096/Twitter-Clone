@@ -1,32 +1,51 @@
-const URL = "http://localhost:3000/tweets?"
+const URL = "http://localhost:3000/tweets?";
+let nextPageUrl = null;
+let nextPage = false;
 
-getTwitterData = () => {
+getTwitterData = (nextPage) => {
     let query = document.getElementById("user-input").value;
     if(!query) {
         return;
     }
+    
     const encodedQuery = encodeURIComponent(query);
-    fetch(`${URL}q=${encodedQuery}&count=10`).then(response => {
+    let fullURL = `${URL}q=${encodedQuery}&count=10`;
+    if(nextPageUrl) {
+        fullURL = nextPageUrl;
+        nextPage = true;
+    }
+
+    fetch(fullURL).then(response => {
         if(response.ok) {
             return response.json()
         }
         throw new Error("Request failed!");
     }, networkError => console.log(networkError.message)
     ).then(jsonResponse => {
-        displayTwitterData(jsonResponse);
+        displayTwitterData(jsonResponse, nextPage);
+        saveNextPage(jsonResponse.search_metadata);
     })
 }
 
-eventHandler = (e) => {
+eventHandlerKey = (e) => {
     if(e.keyCode === 13) {
+        nextPage = false;
+        nextPageUrl = null;
         getTwitterData();
     }
+};
+
+eventHandlerclick = () => {
+    nextPage = false;
+    nextPageUrl = null;
+    getTwitterData();
 }
 
-document.getElementById("search").addEventListener("click", getTwitterData);
-document.getElementById("user-input").addEventListener("keyup", eventHandler);
+document.getElementById("search").addEventListener("click", eventHandlerclick);
+document.getElementById("nextPage").addEventListener("click", getTwitterData);
+document.getElementById("user-input").addEventListener("keyup", eventHandlerKey);
 
-displayTwitterData = (response) => {
+displayTwitterData = (response, nextPage) => {
     let text = '';
     response["statuses"].map(data => {
         let date = new Date(data.created_at).toISOString();
@@ -65,7 +84,12 @@ displayTwitterData = (response) => {
         `
     });
 
-    document.querySelector(".tweets-list").innerHTML = text;
+    if(nextPage) {
+        document.querySelector(".tweets-list").insertAdjacentHTML('beforeend', text);
+    }else {
+        document.querySelector(".tweets-list").innerHTML = text;
+    }
+    
 }
 
 buildImages = (metaData) => {
@@ -90,24 +114,24 @@ buildVideo = (metaData) => {
     for(let i = 0; i < 1; i++) {
         if(metaData[i]["type"] === "video") {
             videoExists = true;
-            const videoUrl = metaData[i]["video_info"]["variants"].map(video => {
-                return (video["content_type"] === "video/mp4") ? video["url"] : "";
+            const videoUrl = metaData[i]["video_info"]["variants"].find(video => {
+                return video["content_type"] === "video/mp4";
             });
-            videoUrl.filter(getUrl => getUrl !== "")
+        
                 video += `
                 <video controls class="tweet-video">
-                    <source src=${videoUrl[0]} type="video/mp4">
+                    <source src=${videoUrl["url"]} type="video/mp4">
                 </video>
                 `;
         }else if(metaData[i].type === "animated_gif") {
             videoExists = true;
-            const videoUrl = metaData[i]["video_info"]["variants"].map(video => {
-                return (video["content_type"] === "video/mp4") ? video["url"] : "";
+            const videoUrl = metaData[i]["video_info"]["variants"].find(video => {
+                return video["content_type"] === "video/mp4";
             });
-            videoUrl.filter(getUrl => getUrl !== "")
+        
                 video += `
                 <video class="tweet-video" autoplay loop>
-                    <source src=${videoUrl[0]} type="video/mp4">
+                    <source src=${videoUrl["url"]} type="video/mp4">
                 </video>
                 `;
         }
@@ -119,5 +143,16 @@ buildVideo = (metaData) => {
 selectTrend = (e) => {
     const selectedTrend = e.innerHTML;
     document.getElementById("user-input").value = selectedTrend;
+    nextPage = false;
+    nextPageUrl = null;
     getTwitterData();
+}
+
+saveNextPage = (metaData) => {
+    if(metaData.next_results) {
+        nextPageUrl = `http://localhost:3000/tweets${metaData.next_results}`;
+        document.getElementById("nextPage").style.visibility = 'visible';
+    }else {
+        document.getElementById("nextPage").style.visibility = 'hidden';
+    }
 }

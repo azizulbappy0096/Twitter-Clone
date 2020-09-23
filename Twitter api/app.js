@@ -14,8 +14,9 @@ app.use(cors());
 app.get('/tweets', (req, res) => {
     const query = req.query.q;
     const count = req.query.count;
+    const max_id = req.query.max_id;
 
-    twitter.get(query, count).then(jsonResponse => {
+    twitter.get(query, count, max_id).then(jsonResponse => {
         res.status(200).send(jsonResponse.data);
     })
     .catch(error => {
